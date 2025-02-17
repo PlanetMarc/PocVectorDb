@@ -25,6 +25,11 @@ def main():
     model = SentenceTransformer('all-MiniLM-L6-v2')
     embedding_function = MyEmbeddingFunction(model)
     
+    # Ensure the ./db directory exists
+    db_directory = "./db"
+    if not os.path.exists(db_directory):
+        os.makedirs(db_directory)
+    
     # Initialize Chroma DB client with DuckDB storage
     client = chromadb.Client(Settings(persist_directory="./db"))
     
